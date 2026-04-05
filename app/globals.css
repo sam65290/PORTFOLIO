@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* 1. Global Reset & Smooth Scroll */
+html {
+  scroll-behavior: smooth !important;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 2. Animation & Marquee Utilities */
+@layer utilities {
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-infinite-scroll {
+    display: flex;
+    width: max-content;
+    animation: infinite-scroll 60s linear infinite;
+  }
+
+  /* Optional: pause on hover */
+  /* .animate-infinite-scroll:hover {
+    animation-play-state: paused;
+  } */
+}
