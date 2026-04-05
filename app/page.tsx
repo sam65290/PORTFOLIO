@@ -209,15 +209,6 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
-
-        To move your contact section to the left, we need to change the alignment of the flex container and the origin of the hover effect.
-
-In your current code, the footer uses justify-between items-end, which is pushing the content apart and anchoring it to the bottom-right. We will change this to items-start and ensure the text is left-aligned.
-
-The Fix
-Replace your Footer section with this updated code:
-
-TypeScript
         {/* --- FOOTER / CONTACT --- */}
         <footer id="contact" className="py-32 border-t border-white/5 scroll-mt-24">
           <div className="flex flex-col md:flex-row justify-start items-start md:items-end gap-12">
