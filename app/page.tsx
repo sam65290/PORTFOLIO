@@ -154,35 +154,60 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* --- EXPERTISE --- */}
-        <section className="py-24 border-t border-white/5">
+        {/* --- SKILLS & EXPERTISE SECTION --- */}
+        <section className="py-20 border-t border-white/5">
           <p className="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold mb-12">Things i know</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-gray-500 text-sm font-medium">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            
+            {/* Column 1: Platforms */}
             <div className="space-y-8">
-              <h3 className="text-xl font-bold text-white uppercase tracking-wider">Platforms</h3>
-              <div className="grid grid-cols-1 gap-y-4">
-                <span>PC (Steam/Epic) / Nintendo Switch</span>
-                <span>iOS / Android / VR (Quest/PSVR)</span>
+              <div className="flex items-center gap-3">
+                <div className="text-white">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em]">Platforms</h3>
+              </div>
+              <div className="grid grid-cols-1 gap-y-3 text-sm font-medium text-gray-500">
+                <span>PC </span>
+                <span>Meta Quest (VR / MR)</span>
+                <span>Android / iOS</span>
+                <span>Nintendo Switch</span>
               </div>
             </div>
+
+            {/* Column 2: Tools & Software */}
             <div className="space-y-8">
-              <h3 className="text-xl font-bold text-white uppercase tracking-wider">Tools</h3>
-              <div className="grid grid-cols-2 gap-y-4">
-                <span>JIRA / TestRail</span>
-                <span>Confluence / Mantis</span>
-                <span>ADB / DevTools</span>
-                <span>Charles Proxy</span>
-                <span>Game Bench / Aptum</span>
+              <div className="flex items-center gap-3">
+                <div className="text-white">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                </div>
+                <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em]">Tools & Software</h3>
+              </div>
+              <div className="grid grid-cols-1 gap-y-3 text-sm font-medium text-gray-500">
+                <span>JIRA / Confluence</span>
+                <span>TestRail / Mantis</span>
+                <span>ADB / Charles Proxy</span>
+                <span>Gamebench / Apptim</span>
               </div>
             </div>
+
+            {/* Column 3: Testing Expertise */}
             <div className="space-y-8">
-              <h3 className="text-xl font-bold text-white uppercase tracking-wider">Expertise</h3>
-              <div className="grid grid-cols-1 gap-y-4">
+              <div className="flex items-center gap-3">
+                <div className="text-white">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em]">Testing Expertise</h3>
+              </div>
+              <div className="grid grid-cols-1 gap-y-3 text-sm font-medium text-gray-500">
+                <span>Functional / Regression Testing</span>
+                <span>Smoke / Sanity Testing</span>
                 <span>Black & White Box Testing</span>
-                <span>Smoke, Sanity & Regression</span>
-                <span>Functional & Performance</span>
+                <span>Performance Profiling</span>
               </div>
             </div>
+
           </div>
         </section>
 
@@ -209,15 +234,7 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
-
-        To move your contact section to the left, we need to change the alignment of the flex container and the origin of the hover effect.
-
-In your current code, the footer uses justify-between items-end, which is pushing the content apart and anchoring it to the bottom-right. We will change this to items-start and ensure the text is left-aligned.
-
-The Fix
-Replace your Footer section with this updated code:
-
-TypeScript
+        
         {/* --- FOOTER / CONTACT --- */}
         <footer id="contact" className="py-32 border-t border-white/5 scroll-mt-24">
           <div className="flex flex-col md:flex-row justify-start items-start md:items-end gap-12">
