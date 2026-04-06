@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   GithubIcon, 
   LinkedinIcon, 
@@ -23,6 +23,13 @@ const projects = [
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  // QA Fix: Prevent background scrolling when modal is open
+  useEffect(() => {
+    if (isModalOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'unset';
+  }, [isModalOpen]);
 
   const scrollToTop = (): void => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -49,7 +56,6 @@ export default function Portfolio() {
           </ul>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden bg-[#0a0a0a] border-b border-white/5 px-6 py-8 flex flex-col gap-6 text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500">
             <a href="#experience" onClick={() => setIsMenuOpen(false)}>Work</a>
@@ -86,7 +92,6 @@ export default function Portfolio() {
             <span className="text-white"> Mobile, PC, and XR.</span>
           </p>
           <div className="flex gap-4">
-            {/* UPDATED DOWNLOAD BUTTON */}
             <a 
               href="/Sameer_Dudekula_QA_Tester.pdf" 
               download="Sameer_Dudekula_QA_Tester.pdf"
@@ -102,10 +107,16 @@ export default function Portfolio() {
 
         {/* --- PROJECTS MARQUEE --- */}
         <section className="py-24 border-t border-white/5 overflow-hidden">
-          <div className="max-w-6xl mx-auto px-6 mb-12">
+          <div className="max-w-6xl mx-auto px-6 mb-12 flex justify-between items-end">
             <p className="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold">
               Played for hours
             </p>
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="text-[10px] uppercase tracking-widest font-bold text-white/50 hover:text-white transition-colors border-b border-white/20 pb-1"
+            >
+              Show All
+            </button>
           </div>
           
           <div className="relative flex overflow-hidden py-4">
@@ -130,6 +141,41 @@ export default function Portfolio() {
           </div>
         </section>
 
+        {/* --- MODAL POP-UP (OPTIMIZED) --- */}
+        {isModalOpen && (
+          <div className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-8">
+            <div 
+              className="absolute inset-0 bg-black/95 backdrop-blur-md"
+              onClick={() => setIsModalOpen(false)}
+            />
+            <div className="relative bg-[#0a0a0a] border border-white/10 w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-3xl p-8 md:p-16 shadow-2xl custom-scrollbar">
+              <div className="flex justify-between items-center mb-16">
+                <h2 className="text-2xl font-bold tracking-tighter uppercase italic text-white">Full Gallery</h2>
+                <button onClick={() => setIsModalOpen(false)} className="p-3 hover:bg-white/10 rounded-full transition-colors text-white">
+                  <XIcon size={28} />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12 justify-items-center">
+                {projects.map((project, index) => (
+                  <div key={index} className="flex flex-col items-center gap-6">
+                    <div className="rounded-2xl overflow-hidden shadow-lg border border-white/5">
+                      <img 
+                        src={project.image} 
+                        alt={project.name}
+                        className="max-h-36 md:max-h-48 w-auto h-auto object-contain"
+                      />
+                    </div>
+                    <span className="text-xl md:text-2xl font-black uppercase tracking-tighter italic text-white">
+                      {project.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* --- ABOUT --- */}
         <section id="about" className="py-32 grid md:grid-cols-12 gap-8 border-t border-white/5 scroll-mt-24">
           <div className="md:col-span-3">
@@ -148,39 +194,61 @@ export default function Portfolio() {
           </div>
           <div className="md:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
             <div><h3 className="text-2xl md:text-3xl font-bold">6+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Major Projects</p></div>
-            <div><h3 className="text-2xl md:text-3xl font-bold">1000+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Bugs Reported</p></div>
-            <div><h3 className="text-2xl md:text-3xl font-bold">200+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Tests Executed</p></div>
+            <div><h3 className="text-2xl md:text-3xl font-bold">600+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Bugs Reported</p></div>
+            <div><h3 className="text-2xl md:text-3xl font-bold">250+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Tests Executed</p></div>
             <div><h3 className="text-2xl md:text-3xl font-bold">2+ Yrs</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Experience</p></div>
           </div>
         </section>
 
-        {/* --- EXPERTISE --- */}
-        <section className="py-24 border-t border-white/5">
+        {/* --- SKILLS & EXPERTISE --- */}
+        <section className="py-20 border-t border-white/5">
           <p className="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold mb-12">Things i know</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-gray-500 text-sm font-medium">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             <div className="space-y-8">
-              <h3 className="text-xl font-bold text-white uppercase tracking-wider">Platforms</h3>
-              <div className="grid grid-cols-1 gap-y-4">
-                <span>PC (Steam/Epic) / Nintendo Switch</span>
-                <span>iOS / Android / VR (Quest/PSVR)</span>
+              <div className="flex items-center gap-3">
+                <div className="text-white">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em]">Platforms</h3>
+              </div>
+              <div className="grid grid-cols-1 gap-y-3 text-sm font-medium text-gray-500">
+                <span>PC</span>
+                <span>Meta Quest (VR / MR)</span>
+                <span>Android / iOS</span>
+                <span>Nintendo Switch</span>
               </div>
             </div>
             <div className="space-y-8">
-              <h3 className="text-xl font-bold text-white uppercase tracking-wider">Tools</h3>
-              <div className="grid grid-cols-2 gap-y-4">
-                <span>JIRA / TestRail</span>
-                <span>Confluence / Mantis</span>
-                <span>ADB / DevTools</span>
-                <span>Charles Proxy</span>
-                <span>Game Bench / Aptum</span>
+              <div className="flex items-center gap-3">
+                <div className="text-white">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                </div>
+                <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em]">Tools & Software</h3>
+              </div>
+              <div className="grid grid-cols-2 gap-y-3 text-sm font-medium text-gray-500">
+                <span>JIRA / Confluence</span>
+                <span>TestRail / Mantis</span>
+                <span>ADB / Charles Proxy</span>
+                <span>Gamebench / Apptim</span>
+                <span>CapFramX / HWinfo</span>
+                <span>beamable</span>
+                <span>Postman</span>
+                <span>Meta Quest Developer Hub</span>
               </div>
             </div>
             <div className="space-y-8">
-              <h3 className="text-xl font-bold text-white uppercase tracking-wider">Expertise</h3>
-              <div className="grid grid-cols-1 gap-y-4">
-                <span>Black & White Box Testing</span>
-                <span>Smoke, Sanity & Regression</span>
-                <span>Functional & Performance</span>
+              <div className="flex items-center gap-3">
+                <div className="text-white">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em]">Testing Expertise</h3>
+              </div>
+              <div className="grid grid-cols-1 gap-y-3 text-sm font-medium text-gray-500">
+                <span>Functional / Regression Testing</span>
+                <span>Smoke / Sanity Testing</span>
+                <span>Black / White Box Testing</span>
+                <span>Network testing / Performance Profiling</span>
+                <span>A/B Testing</span>
               </div>
             </div>
           </div>
@@ -195,55 +263,41 @@ export default function Portfolio() {
               <span className="text-xs text-gray-500 font-bold uppercase tracking-widest">Oct 2023 - Present</span>
               <h3 className="text-2xl font-bold mt-4 mb-4">QA Test Engineer at <span className="bg-white/5 px-3 py-1 rounded text-lg text-white">Side – Hyderabad</span></h3>
               <ul className="text-gray-400 space-y-3 list-disc list-inside mb-6">
-                <li>Managed end-to-end QA for 6+ major projects across Mobile, PC, and XR to ensure 100% stability.</li>
-                <li>Reduced post-release hotfixes by 20% through rigorous functional and regression testing.</li>
+                <li>Managed end-to-end QA for 6+ major projects across Mobile, PC, and XR.</li>
+                <li>Reduced post-release hotfixes by 20% through rigorous testing.</li>
                 <li>Led QA-Dev meetings to prioritize bugs, accelerating resolution by 15%.</li>
                 <li>Verified PC performance across diverse Intel/AMD and NVIDIA configurations.</li>
                 <li>Mentored junior testers on JIRA workflows and game testing methodologies.</li>
               </ul>
               <div className="flex flex-wrap gap-3">
-                {['JIRA', 'TestRail', 'ADB', 'Game bench', 'Aptum'].map((tag) => (
+                {['JIRA', 'TestRail', 'CapFramX ', 'Game bench', 'Aptum','beamable','MQDH'].map((tag) => (
                   <span key={tag} className="text-[10px] bg-white/5 px-3 py-1 rounded-full uppercase font-bold tracking-widest text-gray-400">{tag}</span>
                 ))}
               </div>
             </div>
           </div>
         </section>
-        {/* --- FOOTER / CONTACT --- */}
+
+        {/* --- FOOTER --- */}
         <footer id="contact" className="py-32 border-t border-white/5 scroll-mt-24">
           <div className="flex flex-col md:flex-row justify-start items-start md:items-end gap-12">
-            <div className="max-w-lg w-full text-left"> {/* Added text-left and w-full */}
-              <p className="text-m text-gray-500 font-medium mb-8">Wanna know what i can do, get in touch-</p>
-              
-              <div className="flex flex-col gap-6 items-start"> {/* Added items-start */}
-                <a 
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=sam65290@gmail.com" 
-                  target="_blank" rel="noopener noreferrer"
-                  className="group flex items-center gap-4 text-4xl md:text-6xl font-bold text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 origin-left w-fit"
-                >
+            <div className="max-w-lg w-full text-left">
+              <p className="text-xl text-gray-500 font-medium mb-8">Wanna know what i can do, get in touch-</p>
+              <div className="flex flex-col gap-6 items-start">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sam65290@gmail.com" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-4xl md:text-6xl font-bold text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 origin-left w-fit">
                   <span className="group-hover:underline decoration-2 underline-offset-8">Gmail</span>
                   <ArrowUpIcon className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rotate-45" size={40} />
                 </a>
-
-                <a 
-                  href="https://www.linkedin.com/in/sameer-dudekula/" 
-                  target="_blank" rel="noopener noreferrer"
-                  className="group flex items-center gap-4 text-4xl md:text-6xl font-bold text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 origin-left w-fit"
-                >
+                <a href="https://www.linkedin.com/in/sameer-dudekula/" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-4xl md:text-6xl font-bold text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 origin-left w-fit">
                   <span className="group-hover:underline decoration-2 underline-offset-8">LinkedIn</span>
                   <ArrowUpIcon className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 rotate-45" size={40} />
                 </a>
               </div>
             </div>
-
-            {/* Scroll to Top Button - Moved to the right via margin-left auto */}
-            <button
-              onClick={scrollToTop}
-              className="md:ml-auto w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group shrink-0">
+            <button onClick={scrollToTop} className="md:ml-auto w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group shrink-0">
               <ArrowUpIcon className="group-hover:-translate-y-1 transition-transform" size={24} />
             </button>
           </div>
-
           <div className="mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-widest font-bold text-gray-600">
              <p>Sameer Dudekula</p>
              <p>Hyderabad, India</p>
