@@ -182,8 +182,15 @@ export default function Portfolio() {
             <p className="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold">Something About Me</p>
           </div>
           <div className="md:col-span-9 space-y-8 text-gray-400 text-lg leading-relaxed">
-            <p>I am a <span className="text-white">Quality Verification professional</span> who bridges the gap between complex development builds and seamless player experiences. With a deep focus on the technical lifecycle of game production, I specialize in identifying critical blockers and performing <span className="text-white">root cause analysis</span>.</p>
-            <p>Throughout my career, I have worked across the full STLC—translating intricate requirements into rigorous test plans and collaborating closely with engineers. I bring a strong focus on <span className="text-white">performance-driven testing</span> and hardware-software synergy.</p>
+            <p>
+              I am a <span className="text-white">Quality Test Engineer</span> who bridges the gap between complex development builds and seamless user experiences. With a strong understanding of the <span className="text-white">Software Testing Life Cycle (STLC)</span>, I specialize in identifying critical defects, analyzing <span className="text-white">root causes</span>, and ensuring overall product quality.
+            </p>
+            <p>
+              Throughout my career, I have translated intricate requirements into well-structured <span className="text-white">test plans and test cases</span>, while collaborating closely with developers to resolve issues efficiently. I bring a detail-oriented and <span className="text-white">performance-focused approach</span> to testing, with an emphasis on delivering stable, reliable, and high-performing applications.
+            </p>
+            <p>
+              I am passionate about continuous improvement, enhancing testing processes, and ensuring a smooth <span className="text-white">end-user experience</span> through thorough and effective quality assurance practices.
+            </p>
           </div>
         </section>
 
