@@ -1,5 +1,3 @@
-// Build Verified
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -152,7 +150,7 @@ export default function Portfolio() {
             />
             <div className="relative bg-[#0a0a0a] border border-white/10 w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-3xl p-8 md:p-16 shadow-2xl custom-scrollbar">
               <div className="flex justify-between items-center mb-16">
-                <h2 className="text-2xl font-bold tracking-tighter uppercase italic text-white">Full Gallery</h2>
+                <h2 className="text-2xl font-bold tracking-tighter uppercase italic text-white">Projects</h2>
                 <button onClick={() => setIsModalOpen(false)} className="p-3 hover:bg-white/10 rounded-full transition-colors text-white">
                   <XIcon size={28} />
                 </button>
@@ -202,20 +200,10 @@ export default function Portfolio() {
           </div>
         </section>
 
-<<<<<<< HEAD
-        {/* --- SKILLS & EXPERTISE SECTION --- */}
-        <section className="py-20 border-t border-white/5">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold mb-12">Things i know</p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            
-            {/* Column 1: Platforms */}
-=======
         {/* --- SKILLS & EXPERTISE --- */}
         <section className="py-20 border-t border-white/5">
           <p className="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold mb-12">Things i know</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
->>>>>>> temp-fix
             <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <div className="text-white">
@@ -224,18 +212,12 @@ export default function Portfolio() {
                 <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em]">Platforms</h3>
               </div>
               <div className="grid grid-cols-1 gap-y-3 text-sm font-medium text-gray-500">
-<<<<<<< HEAD
-                <span>PC </span>
-=======
                 <span>PC</span>
->>>>>>> temp-fix
                 <span>Meta Quest (VR / MR)</span>
                 <span>Android / iOS</span>
                 <span>Nintendo Switch</span>
               </div>
             </div>
-
-            {/* Column 2: Tools & Software */}
             <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <div className="text-white">
@@ -243,26 +225,17 @@ export default function Portfolio() {
                 </div>
                 <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em]">Tools & Software</h3>
               </div>
-<<<<<<< HEAD
-              <div className="grid grid-cols-1 gap-y-3 text-sm font-medium text-gray-500">
-=======
               <div className="grid grid-cols-2 gap-y-3 text-sm font-medium text-gray-500">
->>>>>>> temp-fix
                 <span>JIRA / Confluence</span>
                 <span>TestRail / Mantis</span>
                 <span>ADB / Charles Proxy</span>
                 <span>Gamebench / Apptim</span>
-<<<<<<< HEAD
-=======
-                <span>CapFramX / HWinfo</span>
-                <span>beamable</span>
-                <span>Postman</span>
+                <span>CapFrameX / HWinfo</span>
+                <span>Beamable</span>
                 <span>Meta Quest Developer Hub</span>
->>>>>>> temp-fix
+                <span>Postman</span>  
               </div>
             </div>
-
-            {/* Column 3: Testing Expertise */}
             <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <div className="text-white">
@@ -273,17 +246,11 @@ export default function Portfolio() {
               <div className="grid grid-cols-1 gap-y-3 text-sm font-medium text-gray-500">
                 <span>Functional / Regression Testing</span>
                 <span>Smoke / Sanity Testing</span>
-<<<<<<< HEAD
                 <span>Black & White Box Testing</span>
-                <span>Performance Profiling</span>
-=======
-                <span>Black / White Box Testing</span>
                 <span>Network testing / Performance Profiling</span>
                 <span>A/B Testing</span>
->>>>>>> temp-fix
               </div>
             </div>
-
           </div>
         </section>
 
@@ -303,24 +270,19 @@ export default function Portfolio() {
                 <li>Mentored junior testers on JIRA workflows and game testing methodologies.</li>
               </ul>
               <div className="flex flex-wrap gap-3">
-                {['JIRA', 'TestRail', 'CapFramX ', 'Game bench', 'Aptum','beamable','MQDH'].map((tag) => (
+                {['JIRA', 'TestRail', 'Charles Proxy', 'Game bench','CapFrameX','Beamable','MQDH'].map((tag) => (
                   <span key={tag} className="text-[10px] bg-white/5 px-3 py-1 rounded-full uppercase font-bold tracking-widest text-gray-400">{tag}</span>
                 ))}
               </div>
             </div>
           </div>
         </section>
-<<<<<<< HEAD
-        
-        {/* --- FOOTER / CONTACT --- */}
-=======
 
         {/* --- FOOTER --- */}
->>>>>>> temp-fix
         <footer id="contact" className="py-32 border-t border-white/5 scroll-mt-24">
           <div className="flex flex-col md:flex-row justify-start items-start md:items-end gap-12">
             <div className="max-w-lg w-full text-left">
-              <p className="text-xl text-gray-500 font-medium mb-8">Wanna know what i can do, get in touch-</p>
+              <p className="text-xl text-gray-500 font-medium mb-8">Wanna to know what I can do more? Get in touch.</p>
               <div className="flex flex-col gap-6 items-start">
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sam65290@gmail.com" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-4xl md:text-6xl font-bold text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 origin-left w-fit">
                   <span className="group-hover:underline decoration-2 underline-offset-8">Gmail</span>
