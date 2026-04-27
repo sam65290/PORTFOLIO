@@ -13,7 +13,6 @@ import {
 const projects = [
   { name: "PERIDOT", image: "/Peridoticon.png" },
   { name: "HELLO DOT", image: "/HelloDot.png" },
-  { name: " Pokémon GO", image: "/Pgo.jpeg" },
   { name: "GTA 5 Enhanced", image: "/GTA5.png" },
   { name: "Red Dead Redemption", image: "/RedDeadRedemption.png" },
   { name: "Farming Simulator", image: "/FarmingSimulatorVR.png" },
