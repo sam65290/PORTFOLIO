@@ -104,76 +104,7 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* --- PROJECTS MARQUEE --- */}
-        <section className="py-24 border-t border-white/5 overflow-hidden">
-          <div className="max-w-6xl mx-auto px-6 mb-12 flex justify-between items-end">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold">
-              Played for hours
-            </p>
-            <button 
-              onClick={() => setIsModalOpen(true)}
-              className="text-[10px] uppercase tracking-widest font-bold text-white/50 hover:text-white transition-colors border-b border-white/20 pb-1"
-            >
-              Show All
-            </button>
-          </div>
-          
-          <div className="relative flex overflow-hidden py-4">
-            <div className="flex animate-infinite-scroll whitespace-nowrap gap-12 items-center opacity-40 hover:opacity-100 transition-opacity duration-700">
-              {[...projects, ...projects].map((project, index) => (
-                <div key={index} className="flex flex-col items-center gap-4 group shrink-0">
-                  <div className="rounded-xl overflow-hidden transition-colors">
-                    <img 
-                      src={project.image} 
-                      alt={project.name}
-                      className="max-h-36 md:max-h-48 w-auto h-auto grayscale group-hover:grayscale-0 transition-all duration-500"
-                    />
-                  </div>
-                  <span className="text-xl md:text-2xl font-black uppercase tracking-tighter italic text-white opacity-70 group-hover:opacity-100 transition-all duration-300">
-                    {project.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-linear-to-r from-[#0a0a0a] to-transparent z-10" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-linear-to-l from-[#0a0a0a] to-transparent z-10" />
-          </div>
-        </section>
-
-        {/* --- MODAL POP-UP (OPTIMIZED) --- */}
-        {isModalOpen && (
-          <div className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-8">
-            <div 
-              className="absolute inset-0 bg-black/95 backdrop-blur-md"
-              onClick={() => setIsModalOpen(false)}
-            />
-            <div className="relative bg-[#0a0a0a] border border-white/10 w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-3xl p-8 md:p-16 shadow-2xl custom-scrollbar">
-              <div className="flex justify-between items-center mb-16">
-                <h2 className="text-2xl font-bold tracking-tighter uppercase italic text-white">Projects</h2>
-                <button onClick={() => setIsModalOpen(false)} className="p-3 hover:bg-white/10 rounded-full transition-colors text-white">
-                  <XIcon size={28} />
-                </button>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12 justify-items-center">
-                {projects.map((project, index) => (
-                  <div key={index} className="flex flex-col items-center gap-6">
-                    <div className="rounded-2xl overflow-hidden shadow-lg border border-white/5">
-                      <img 
-                        src={project.image} 
-                        alt={project.name}
-                        className="max-h-36 md:max-h-48 w-auto h-auto object-contain"
-                      />
-                    </div>
-                    <span className="text-xl md:text-2xl font-black uppercase tracking-tighter italic text-white">
-                      {project.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+        
 
         {/* --- ABOUT --- */}
         <section id="about" className="py-32 grid md:grid-cols-12 gap-8 border-t border-white/5 scroll-mt-24">
