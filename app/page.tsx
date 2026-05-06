@@ -11,20 +11,22 @@ import {
 } from '../components/Icons';
 
 const projects = [
-  { name: "PERIDOT", image: "/Peridoticon.png" },
-  { name: "HELLO DOT", image: "/HelloDot.png" },
-  { name: "GTA 5 Enhanced", image: "/GTA5.png" },
-  { name: "Red Dead Redemption", image: "/RedDeadRedemption.png" },
-  { name: "Farming Simulator", image: "/FarmingSimulatorVR.png" },
-  { name: "Squid Game", image: "/SquidGameUnleashed.png" },
-  { name: "FIFA RIVALS", image: "/FifaRivalsIcon.png" }
+  { name: "AR / XR Experiences", image: "/xr_genre.png" },
+  { name: "Open World Adventure", image: "/openworld_genre.png" },
+  { name: "Competitive Sports", image: "/sports_genre.png" },
+  { name: "MMO / Multiplayer", image: "/mmo_genre.png" },
+  { name: "Simulation & Sandbox", image: "/sim_genre.png" },
+  { name: "Action RPG", image: "/rpg_genre.png" },
+  { name: "Puzzle & Casual Mobile", image: "/mobile_genre.png" } 
 ];
 
 export default function Portfolio() {
+  // Move state INSIDE the component to fix the "Invalid Hook Call" error
+  const [isWorkflowOpen, setIsWorkflowOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  // QA Fix: Prevent background scrolling when modal is open
+  // Prevent background scrolling when modal is open
   useEffect(() => {
     if (isModalOpen) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
@@ -104,7 +106,76 @@ export default function Portfolio() {
           </div>
         </section>
 
-        
+        {/* --- PROJECTS MARQUEE --- */}
+        <section className="py-24 border-t border-white/5 overflow-hidden">
+          <div className="max-w-6xl mx-auto px-6 mb-12 flex justify-between items-end">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold">
+              Played for hours
+            </p>
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="text-[10px] uppercase tracking-widest font-bold text-white/50 hover:text-white transition-colors border-b border-white/20 pb-1"
+            >
+              Show All
+            </button>
+          </div>
+          
+          <div className="relative flex overflow-hidden py-4">
+            <div className="flex animate-infinite-scroll whitespace-nowrap gap-12 items-center opacity-40 hover:opacity-100 transition-opacity duration-700">
+              {[...projects, ...projects].map((project, index) => (
+                <div key={index} className="flex flex-col items-center gap-4 group shrink-0">
+                  <div className="rounded-xl overflow-hidden transition-colors">
+                    <img 
+                      src={project.image} 
+                      alt={project.name}
+                      className="max-h-36 md:max-h-48 w-auto h-auto grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
+                  <span className="text-xl md:text-2xl font-black uppercase tracking-tighter italic text-white opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    {project.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-linear-to-r from-[#0a0a0a] to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-linear-to-l from-[#0a0a0a] to-transparent z-10" />
+          </div>
+        </section>
+
+        {/* --- MODAL POP-UP --- */}
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+            <div 
+              className="absolute inset-0 bg-black/95 backdrop-blur-md"
+              onClick={() => setIsModalOpen(false)}
+            />
+            <div className="relative bg-[#0a0a0a] border border-white/10 w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-3xl p-8 md:p-16 shadow-2xl">
+              <div className="flex justify-between items-center mb-16">
+                <h2 className="text-2xl font-bold tracking-tighter uppercase italic text-white">Full Gallery</h2>
+                <button onClick={() => setIsModalOpen(false)} className="p-3 hover:bg-white/10 rounded-full transition-colors text-white">
+                  <XIcon size={28} />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12 justify-items-center">
+                {projects.map((project, index) => (
+                  <div key={index} className="flex flex-col items-center gap-6">
+                    <div className="rounded-2xl overflow-hidden shadow-lg border border-white/5">
+                      <img 
+                        src={project.image} 
+                        alt={project.name}
+                        className="max-h-36 md:max-h-48 w-auto h-auto object-contain"
+                      />
+                    </div>
+                    <span className="text-xl md:text-2xl font-black uppercase tracking-tighter italic text-white">
+                      {project.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* --- ABOUT --- */}
         <section id="about" className="py-32 grid md:grid-cols-12 gap-8 border-t border-white/5 scroll-mt-24">
@@ -131,9 +202,9 @@ export default function Portfolio() {
           </div>
           <div className="md:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
             <div><h3 className="text-2xl md:text-3xl font-bold">6+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Major Projects</p></div>
-            <div><h3 className="text-2xl md:text-3xl font-bold">600+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Bugs Reported</p></div>
-            <div><h3 className="text-2xl md:text-3xl font-bold">400+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Tests Executed</p></div>
-            <div><h3 className="text-2xl md:text-3xl font-bold">2+ Yrs</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Experience</p></div>
+            <div><h3 className="text-2xl md:text-3xl font-bold">1000+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Bugs Reported</p></div>
+            <div><h3 className="text-2xl md:text-3xl font-bold">200+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Tests Executed</p></div>
+            <div><h3 className="text-2xl md:text-3xl font-bold">2.5 Yrs</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Experience</p></div>
           </div>
         </section>
 
@@ -162,15 +233,11 @@ export default function Portfolio() {
                 </div>
                 <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em]">Tools & Software</h3>
               </div>
-              <div className="grid grid-cols-2 gap-y-3 text-sm font-medium text-gray-500">
+              <div className="grid grid-cols-1 gap-y-3 text-sm font-medium text-gray-500">
                 <span>JIRA / Confluence</span>
                 <span>TestRail / Mantis</span>
                 <span>ADB / Charles Proxy</span>
                 <span>Gamebench / Apptim</span>
-                <span>CapFrameX / HWinfo</span>
-                <span>Beamable</span>
-                <span>Meta Quest Developer Hub</span>
-                <span>Postman</span>  
               </div>
             </div>
             <div className="space-y-8">
@@ -184,8 +251,7 @@ export default function Portfolio() {
                 <span>Functional / Regression Testing</span>
                 <span>Smoke / Sanity Testing</span>
                 <span>Black & White Box Testing</span>
-                <span>Network testing / Performance Profiling</span>
-                <span>A/B Testing</span>
+                <span>Performance Profiling</span>
               </div>
             </div>
           </div>
@@ -200,14 +266,14 @@ export default function Portfolio() {
               <span className="text-xs text-gray-500 font-bold uppercase tracking-widest">Oct 2023 - Present</span>
               <h3 className="text-2xl font-bold mt-4 mb-4">QA Test Engineer at <span className="bg-white/5 px-3 py-1 rounded text-lg text-white">Side – Hyderabad</span></h3>
               <ul className="text-gray-400 space-y-3 list-disc list-inside mb-6">
-                <li>Managed end-to-end QA for 6+ major projects across Mobile, PC, and XR.</li>
-                <li>Reduced post-release hotfixes by 20% through rigorous testing.</li>
+                <li>Managed end-to-end QA for 6+ major projects across Mobile, PC, and XR to ensure stability.</li>
+                <li>Reduced post-release hotfixes by 20% through rigorous functional and regression testing.</li>
                 <li>Led QA-Dev meetings to prioritize bugs, accelerating resolution by 15%.</li>
-                <li>Verified PC performance across diverse Intel/AMD and NVIDIA configurations.</li>
+                <li>Verified PC performance across diverse hardware configurations.</li>
                 <li>Mentored junior testers on JIRA workflows and game testing methodologies.</li>
               </ul>
               <div className="flex flex-wrap gap-3">
-                {['JIRA', 'TestRail', 'Charles Proxy', 'Game bench','CapFrameX','Beamable','MQDH'].map((tag) => (
+                {['JIRA', 'TestRail', 'ADB', 'Gamebench', 'Apptim'].map((tag) => (
                   <span key={tag} className="text-[10px] bg-white/5 px-3 py-1 rounded-full uppercase font-bold tracking-widest text-gray-400">{tag}</span>
                 ))}
               </div>
@@ -215,11 +281,12 @@ export default function Portfolio() {
           </div>
         </section>
 
+
         {/* --- FOOTER --- */}
         <footer id="contact" className="py-32 border-t border-white/5 scroll-mt-24">
           <div className="flex flex-col md:flex-row justify-start items-start md:items-end gap-12">
             <div className="max-w-lg w-full text-left">
-              <p className="text-xl text-gray-500 font-medium mb-8">Wanna to know what I can do more? Get in touch.</p>
+              <p className="text-m text-gray-500 font-medium mb-8">Wanna know what i can do, get in touch-</p>
               <div className="flex flex-col gap-6 items-start">
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sam65290@gmail.com" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-4xl md:text-6xl font-bold text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 origin-left w-fit">
                   <span className="group-hover:underline decoration-2 underline-offset-8">Gmail</span>
@@ -236,8 +303,8 @@ export default function Portfolio() {
             </button>
           </div>
           <div className="mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-widest font-bold text-gray-600">
-             <p>Sameer Dudekula</p>
-             <p>Hyderabad, India</p>
+              <p>Sameer Dudekula</p>
+              <p>Hyderabad, India</p>
           </div>
         </footer>
       </main>
