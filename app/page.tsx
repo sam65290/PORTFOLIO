@@ -10,6 +10,8 @@ import {
   XIcon 
 } from '../components/Icons';
 
+import { Analytics } from "@vercel/analytics/next"
+
 const projects = [
   { name: "AR / XR Experiences", image: "/xr_genre.png" },
   { name: "Open World Adventure", image: "/openworld_genre.png" },
@@ -202,8 +204,8 @@ export default function Portfolio() {
           </div>
           <div className="md:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
             <div><h3 className="text-2xl md:text-3xl font-bold">6+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Major Projects</p></div>
-            <div><h3 className="text-2xl md:text-3xl font-bold">1000+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Bugs Reported</p></div>
-            <div><h3 className="text-2xl md:text-3xl font-bold">200+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Tests Executed</p></div>
+            <div><h3 className="text-2xl md:text-3xl font-bold">700+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Bugs Reported</p></div>
+            <div><h3 className="text-2xl md:text-3xl font-bold">400+</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Tests Executed</p></div>
             <div><h3 className="text-2xl md:text-3xl font-bold">2.5 Yrs</h3><p className="text-[10px] text-gray-500 uppercase mt-2 font-bold tracking-widest">Experience</p></div>
           </div>
         </section>
