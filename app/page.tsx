@@ -112,7 +112,7 @@ export default function Portfolio() {
         <section className="py-24 border-t border-white/5 overflow-hidden">
           <div className="max-w-6xl mx-auto px-6 mb-12 flex justify-between items-end">
             <p className="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold">
-              Played for hours
+              GENRES I HAVE WORKED ON
             </p>
             <button 
               onClick={() => setIsModalOpen(true)}
